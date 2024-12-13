@@ -32,7 +32,7 @@ interface CartState {
 }
 
 // Zustand store with persistence
-export const useCartStore = create<CartState>()(
+const useCartStore = create<CartState>()(
     persist(
         (set, get) => ({
             items: {},
@@ -152,3 +152,4 @@ export const useCartStore = create<CartState>()(
         }
     )
 );
+export default useCartStore;

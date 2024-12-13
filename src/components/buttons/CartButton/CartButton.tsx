@@ -1,7 +1,6 @@
 import React from 'react';
-import { colors } from '../../config';
-import { IconButton } from '@cumbre/react';
-
+import { colors } from '../../../config';
+import IconButton from '../IconButton/IconButton';
 
 interface CartButtonProps {
     onClick: () => void; // Action when button is clicked

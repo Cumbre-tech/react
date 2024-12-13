@@ -7,7 +7,7 @@ export { default as LinkButton } from "./components/buttons/LinkButton/LinkButto
 export { default as LockToggleButton } from "./components/buttons/LockToggleButton/LockToggleButton";
 export { default as PlayPauseButton } from "./components/buttons/PlayPauseButton/PlayPauseButton";
 export { default as ActionsMenuButton } from "./components/buttons/ActionsMenuButton/ActionsMenuButton";
-
+export { default as CartButton } from "./components/buttons/CartButton/CartButton";
 // Fields
 export { default as AutocompleteField } from "./components/fields/AutocompleteField/AutocompleteField";
 export { default as CheckboxField } from "./components/fields/CheckboxField/CheckboxField";
@@ -63,6 +63,9 @@ export { default as DotLoader } from "./components/Loader/DotLoader";
 
 // Config
 export { default as colors } from "./config/colors";
+
+// Stores
+export { default as useCartStore } from "./stores/cartStore";
 
 // Utils
 
