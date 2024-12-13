@@ -61,6 +61,9 @@ export { default as SpinnerLoader } from "./components/Loader/SpinnerLoader";
 export { default as GridLoader } from "./components/Loader/GridLoader";
 export { default as DotLoader } from "./components/Loader/DotLoader";
 
+// Drawers
+export { default as Drawer } from "./components/drawers/Drawer/Drawer";
+
 // Config
 export { default as colors } from "./config/colors";
 
