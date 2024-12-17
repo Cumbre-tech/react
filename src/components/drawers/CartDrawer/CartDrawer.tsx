@@ -6,6 +6,7 @@ import { colors } from '../../../config';
 import ExpandablePanel from '../../ExpandablePanel/ExpandablePanel';
 import Counter from '../../Counter/Counter';
 import IconButton from '../../buttons/IconButton/IconButton';
+import Button from '../../buttons/Button/Button';
 
 // Define the structure for a cart item
 interface CartItem {
@@ -42,6 +43,7 @@ interface CartData {
 
 interface CartDrawerProps extends Omit<DrawerProps, 'children'> {
     cartData: CartData;
+    onCheckout?: (store: Store) => void;
 }
 
 const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -55,6 +57,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
     height,
     width,
     cartData,
+    onCheckout
 }) => {
     const cart = useCartStore();
     return (
@@ -133,85 +136,96 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                             </div>
                         )}
                         renderBody={() => (
-                            <ul
-                                style={{
-                                    listStyle: 'none',
-                                    margin: 0,
-                                    padding: 0,
-                                    paddingLeft: 10,
-                                    display: 'block',
-                                }}
-                            >
-                                {store.items.map((item) => (
-                                    <li key={item.id} style={{
-                                        paddingBottom: '7px',
-                                        paddingTop: '7px',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                    }}>
-                                        <div style={{
+                            <>
+                                <ul
+                                    style={{
+                                        listStyle: 'none',
+                                        margin: 0,
+                                        padding: 0,
+                                        paddingLeft: 10,
+                                        display: 'block',
+                                    }}
+                                >
+                                    {store.items.map((item) => (
+                                        <li key={item.id} style={{
+                                            paddingBottom: '7px',
+                                            paddingTop: '7px',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
                                         }}>
-                                            <div>
-                                                <strong>{item.name}</strong>
-                                            </div>
-                                            {item.isOnSale ? (
+                                            <div style={{
+                                            }}>
                                                 <div>
-                                                    <div>
-                                                        Precio:
-                                                        <span
-                                                            style={{
-                                                                textDecoration: 'line-through',
-                                                                color: colors.textTint,
-                                                                marginRight: 8,
-                                                                marginLeft: 8,
-                                                                display: 'inline-block',
-                                                            }}
-                                                        >
-                                                            ${item.price.toFixed(2)}
-                                                        </span>
-                                                        <span>${item.finalPrice.toFixed(2)}</span>
-                                                    </div>
+                                                    <strong>{item.name}</strong>
                                                 </div>
-                                            ) : (
-                                                <p style={{ margin: '0' }}>Precio: ${item.price.toFixed(2)}</p>
-                                            )}
-                                            <div
-                                                style={{
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'flex-start',
-                                                    marginTop: 5,
-                                                }}
-                                            >Cant.:
-                                                <Counter
-                                                    containerStyle={{ paddingLeft: '8px', }}
-                                                    buttonStyle={{ backgroundColor: '#f0f0f0', border: 'none', borderRadius: '4px' }}
-                                                    inputStyle={{ fontSize: '16px' }}
-                                                    defaultValue={item.quantity}
-                                                    minValue={1}
-                                                    //maxValue={10}
-                                                    step={1}
-                                                    onValueChange={(value) => {
-                                                        console.log(value)
-                                                        cart.changeQuantity(item.id, value, store.id);
+                                                {item.isOnSale ? (
+                                                    <div>
+                                                        <div>
+                                                            Precio:
+                                                            <span
+                                                                style={{
+                                                                    textDecoration: 'line-through',
+                                                                    color: colors.textTint,
+                                                                    marginRight: 8,
+                                                                    marginLeft: 8,
+                                                                    display: 'inline-block',
+                                                                }}
+                                                            >
+                                                                ${item.price.toFixed(2)}
+                                                            </span>
+                                                            <span>${item.finalPrice.toFixed(2)}</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <p style={{ margin: '0' }}>Precio: ${item.price.toFixed(2)}</p>
+                                                )}
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'flex-start',
+                                                        marginTop: 5,
                                                     }}
-                                                />
+                                                >Cant.:
+                                                    <Counter
+                                                        containerStyle={{ paddingLeft: '8px', }}
+                                                        buttonStyle={{ backgroundColor: '#f0f0f0', border: 'none', borderRadius: '4px' }}
+                                                        inputStyle={{ fontSize: '16px' }}
+                                                        defaultValue={item.quantity}
+                                                        minValue={1}
+                                                        step={1}
+                                                        onValueChange={(value) => {
+                                                            console.log(value)
+                                                            cart.changeQuantity(item.id, value, store.id);
+                                                        }}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <IconButton
-                                            icon='delete'
-                                            type='clear'
-                                            size='md'
-                                            hasShadow={false}
-                                            color={colors.danger}
-                                            onClick={() => {
-                                                cart.removeItem(item.id, store.id);
-                                            }}
-                                        />
-                                    </li>
-                                ))}
-                            </ul>
+                                            <IconButton
+                                                icon='delete'
+                                                type='clear'
+                                                size='md'
+                                                hasShadow={false}
+                                                color={colors.danger}
+                                                onClick={() => {
+                                                    cart.removeItem(item.id, store.id);
+                                                }}
+                                            />
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                                    <Button
+                                        title='Finalizar compra'
+                                        onClick={() => onCheckout && onCheckout(store)}
+                                        size='sm'
+                                        hasShadow={false}
+                                        style={{}}
+                                    />
+                                </div>
+                            </>
+
                         )}
                     />
                 ))}
