@@ -42,8 +42,11 @@ export { default as Thumbnail } from "./components/Thumbnail/Thumbnail";
 export { default as StepTracker } from "./components/StepTracker/StepTracker";
 export { default as Pill } from "./components/Pill/Pill";
 export { default as PillGroup } from "./components/PillGroup/PillGroup";
-export { default as IndicatorCard } from "./components/IndicatorCard/IndicatorCard";
 export { default as Counter } from "./components/Counter/Counter";
+
+// Cards
+export { default as IndicatorCard } from "./components/cards/IndicatorCard/IndicatorCard";
+export { default as ProductCard } from "./components/cards/ProductCard/ProductCard";
 
 // Indicators
 export { default as RankingIndicator } from "./components/indicators/RankingIndicator/RankingIndicator";

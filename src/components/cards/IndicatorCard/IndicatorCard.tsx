@@ -1,17 +1,17 @@
 import React, { useState, CSSProperties } from 'react';
-import AnimatedNumber from '../AnimatedNumber/AnimatedNumber';
-import { colors } from '../../config';
+import AnimatedNumber from '../../AnimatedNumber/AnimatedNumber';
+import { colors } from '../../../config';
 
-import MiniGroupedBarChart from '../miniCharts/MiniGroupedBarChart/MiniGroupedBarChart';
-import MiniStackedBarChart from '../miniCharts/MiniStackedBarChart/MiniStackedBarChart';
-import MiniPieChart from '../miniCharts/MiniPieChart/MiniPieChart';
+import MiniGroupedBarChart from '../../miniCharts/MiniGroupedBarChart/MiniGroupedBarChart';
+import MiniStackedBarChart from '../../miniCharts/MiniStackedBarChart/MiniStackedBarChart';
+import MiniPieChart from '../../miniCharts/MiniPieChart/MiniPieChart';
 
 
-import RankingIndicator from '../indicators/RankingIndicator/RankingIndicator';
-import MiniLineChart from '../miniCharts/MiniLineChart/MiniLineChart';
-import MiniBarChart from '../miniCharts/MiniBarChart/MiniBarChart';
-import IconButton from '../buttons/IconButton/IconButton';
-import SummaryIndicator from '../indicators/SummaryIndicator/SummaryIndicator';
+import RankingIndicator from '../../indicators/RankingIndicator/RankingIndicator';
+import MiniLineChart from '../../miniCharts/MiniLineChart/MiniLineChart';
+import MiniBarChart from '../../miniCharts/MiniBarChart/MiniBarChart';
+import IconButton from '../../buttons/IconButton/IconButton';
+import SummaryIndicator from '../../indicators/SummaryIndicator/SummaryIndicator';
 
 // Represents a single value in 'values' (used in disaggregated and composite indicators)
 interface Value {
@@ -52,16 +52,16 @@ type IndicatorData = SimpleData[] | DisaggregatedData[] | CompositeData[] | Rank
 // Props for the IndicatorCard component
 interface IndicatorCardProps {
     type: 'simple' | 'disaggregated' | 'composite' | 'summary' | 'ranking'; // Type of the indicator
-    title: string; // Indicator title
+    title: string;
     measurementUnit: string; // Unit of measurement (e.g., %, Unid)
     chartType?: 'line' | 'bar' | 'groupedBar' | 'stackedBar' | 'pie' | 'multiLine' | 'lineBarCombo'; // Chart type
     data: IndicatorData; // Data for the indicator
-    containerStyle?: CSSProperties; // Custom styles for the card container
-    titleStyle?: CSSProperties; // Custom styles for the title
-    valueStyle?: CSSProperties; // Custom styles for the value
-    periodStyle?: CSSProperties; // Custom styles for the period
-    labelStyle?: CSSProperties; // Custom styles for the selected label
-    measurementUnitStyle?: CSSProperties; // Custom styles for the unit text
+    containerStyle?: CSSProperties;
+    titleStyle?: CSSProperties;
+    valueStyle?: CSSProperties;
+    periodStyle?: CSSProperties;
+    labelStyle?: CSSProperties;
+    measurementUnitStyle?: CSSProperties;
     //decimalPrecision: number; // Number of decimal places
     decimalPlaces?: number; // Number of decimal places (default: 0)
     thousandSeparator?: string; // Separator for thousands (e.g., ",")
@@ -87,7 +87,6 @@ const IndicatorCard: React.FC<IndicatorCardProps> = ({
 }) => {
     // Get the latest period
     const latestPeriod = data[data.length - 1];
-    //const [currentColor, setCurrentColor] = useState<string>(colors.primary);
     const [currentColor, setCurrentColor] = useState<string | undefined>(
         type === 'disaggregated' || type === 'composite'
             ? (latestPeriod as DisaggregatedData | CompositeData).values[0].color
