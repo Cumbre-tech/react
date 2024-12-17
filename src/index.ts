@@ -43,6 +43,7 @@ export { default as StepTracker } from "./components/StepTracker/StepTracker";
 export { default as Pill } from "./components/Pill/Pill";
 export { default as PillGroup } from "./components/PillGroup/PillGroup";
 export { default as Counter } from "./components/Counter/Counter";
+export { default as ExpandablePanel } from "./components/ExpandablePanel/ExpandablePanel";
 
 // Cards
 export { default as IndicatorCard } from "./components/cards/IndicatorCard/IndicatorCard";
