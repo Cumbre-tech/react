@@ -43,7 +43,7 @@ interface CartData {
 
 interface CartDrawerProps extends Omit<DrawerProps, 'children'> {
     cartData: CartData;
-    onCheckout?: (store: Store) => void;
+    onStartCheckout?: (store: Store) => void;
 }
 
 const CartDrawer: React.FC<CartDrawerProps> = ({
@@ -57,7 +57,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
     height,
     width,
     cartData,
-    onCheckout
+    onStartCheckout
 }) => {
     const cart = useCartStore();
     return (
@@ -218,7 +218,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({
                                 <div style={{ textAlign: 'center', marginTop: '10px' }}>
                                     <Button
                                         title='Finalizar compra'
-                                        onClick={() => onCheckout && onCheckout(store)}
+                                        onClick={() => onStartCheckout && onStartCheckout(store)}
                                         size='sm'
                                         hasShadow={false}
                                         style={{}}
