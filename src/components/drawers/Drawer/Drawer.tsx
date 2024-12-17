@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 
-interface DrawerProps {
+export interface DrawerProps {
     isOpen: boolean;
     anchor: 'left' | 'right' | 'top' | 'bottom';
     duration?: number; // Animation duration in ms

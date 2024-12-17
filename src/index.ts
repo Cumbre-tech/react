@@ -67,7 +67,11 @@ export { default as GridLoader } from "./components/Loader/GridLoader";
 export { default as DotLoader } from "./components/Loader/DotLoader";
 
 // Drawers
-export { default as Drawer } from "./components/drawers/Drawer/Drawer";
+export {
+  default as Drawer,
+  DrawerProps,
+} from "./components/drawers/Drawer/Drawer";
+export { default as CartDrawer } from "./components/drawers/CartDrawer/CartDrawer";
 
 // Config
 export { default as colors } from "./config/colors";
